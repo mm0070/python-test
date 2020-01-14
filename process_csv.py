@@ -10,6 +10,7 @@ DATASET = 'dataset.csv'
 START_DATE = datetime(1999, 6, 1, 0, 0)
 END_DATE = datetime(2007, 8, 31, 0, 0)
 
+
 def least_five_rent(tenant_list, header):
     # sort the list in place, no need to reverse as the requirements specify ascending order
     tenant_list.sort(key=lambda x: x[-1:])
@@ -25,7 +26,7 @@ def lease_25_years(tenant_list, header):
 
 
 def mast_count(tenant_list):
-    transposed_list = list(map(list, zip(*tenant_list)))[6] # 7th column is tenant name
+    transposed_list = list(map(list, zip(*tenant_list)))[6]  # 7th column is tenant name
     tenants_list = list(dict.fromkeys(transposed_list))
     mast_count = {t: transposed_list.count(t) for t in tenants_list}
 
@@ -33,7 +34,7 @@ def mast_count(tenant_list):
 
 
 def date_range(tenant_list, start_date, end_date):
-    dates_list = [t for t in tenant_list if (t[7]>start_date and t[7]<end_date)]
+    dates_list = [t for t in tenant_list if (t[7] > start_date and t[7] < end_date)]
     # format dates
     for d in dates_list:
         d[7] = datetime.strftime(d[7], '%d/%m/%Y')
@@ -61,8 +62,7 @@ def prepare_data(dir, dataset):
         t[7] = datetime.strptime(t[7], '%d %b %Y')
         t[8] = datetime.strptime(t[8], '%d %b %Y')
         t[9] = int(t[9])  # lease duration
-        t[10] = float(t[10]) #rent
-
+        t[10] = float(t[10])  # rent
 
     return header, tenant_list
 
@@ -90,7 +90,8 @@ def main():
         print('Total rent the above tenants pay: £{0:.2f}'.format(total_25y))
         print('\nMast count per tenant: \n')
         print(tabulate(tenant_mast_count.items(), headers=['Tenant Name', 'Mast Count']))
-        print('\nTenants with lease start date between 1st of June 1999 and 31st of August 2007: \n')
+        print('\nTenants with lease start date between 1st of June 1999 and \
+               31st of August 2007: \n')
         print(tabulate(dates_limited, headers=header))
     elif choice == '1':
         # Requirement 1
@@ -111,7 +112,8 @@ def main():
     elif choice == '4':
         # Requirement 4
         dates_limited = date_range(tenant_list, START_DATE, END_DATE)
-        print('\nTenants with lease start date between 1st of June 1999 and 31st of August 2007: \n')
+        print('\nTenants with lease start date between 1st of June 1999 and \
+               31st of August 2007: \n')
         print(tabulate(dates_limited, headers=header))
 
 
