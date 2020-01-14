@@ -33,7 +33,13 @@ def mast_count(tenant_list):
 
 
 def date_range(tenant_list, start_date, end_date):
-    return [t for t in tenant_list if (t[7]>start_date and t[7]<end_date)]
+    dates_list = [t for t in tenant_list if (t[7]>start_date and t[7]<end_date)]
+    # format dates
+    for d in dates_list:
+        d[7] = datetime.strftime(d[7], '%d/%m/%Y')
+        d[8] = datetime.strftime(d[8], '%d/%m/%Y')
+
+    return dates_list
 
 
 def prepare_data(dir, dataset):
@@ -64,28 +70,50 @@ def prepare_data(dir, dataset):
 def main():
     header, tenant_list = prepare_data(DIR, DATASET)
 
-    # Requirement 1
-    least_five = least_five_rent(tenant_list, header)
-    # tell the user what they're looking at
-    print('Five tenants that pay the lowest rent:\n')
-    # print out first 5, and make it pretty
-    print(tabulate(least_five, headers=header))
+    choice = input('Choose from the following options: \n\
+                    0 - Run tasks 1 to 4\n\
+                    1 - Run task 1 only\n\
+                    2 - Run task 2 only\n\
+                    3 - Run task 3 only\n\
+                    4 - Run task 4 only\n\
+                    Input: ')
 
-    # Requirement 2
-    lease_25y, total_25y = lease_25_years(tenant_list, header)
-    print('\nTenants that have 25 year lease:\n')
-    print(tabulate(lease_25y, headers=header))
-    print('Total rent the above tenants pay: £{0:.2f}'.format(total_25y))
+    if choice == '0':
+        least_five = least_five_rent(tenant_list, header)
+        lease_25y, total_25y = lease_25_years(tenant_list, header)
+        tenant_mast_count = mast_count(tenant_list)
+        dates_limited = date_range(tenant_list, START_DATE, END_DATE)
+        print('Five tenants that pay the lowest rent:\n')
+        print(tabulate(least_five, headers=header))
+        print('\nTenants that have 25 year lease:\n')
+        print(tabulate(lease_25y, headers=header))
+        print('Total rent the above tenants pay: £{0:.2f}'.format(total_25y))
+        print('\nMast count per tenant: \n')
+        print(tabulate(tenant_mast_count.items(), headers=['Tenant Name', 'Mast Count']))
+        print('\nTenants with lease start date between 1st of June 1999 and 31st of August 2007: \n')
+        print(tabulate(dates_limited, headers=header))
+    elif choice == '1':
+        # Requirement 1
+        least_five = least_five_rent(tenant_list, header)
+        print('Five tenants that pay the lowest rent:\n')
+        print(tabulate(least_five, headers=header))
+    elif choice == '2':
+        # Requirement 2
+        lease_25y, total_25y = lease_25_years(tenant_list, header)
+        print('\nTenants that have 25 year lease:\n')
+        print(tabulate(lease_25y, headers=header))
+        print('Total rent the above tenants pay: £{0:.2f}'.format(total_25y))
+    elif choice == '3':
+        # Requirement 3
+        tenant_mast_count = mast_count(tenant_list)
+        print('\nMast count per tenant: \n')
+        print(tabulate(tenant_mast_count.items(), headers=['Tenant Name', 'Mast Count']))
+    elif choice == '4':
+        # Requirement 4
+        dates_limited = date_range(tenant_list, START_DATE, END_DATE)
+        print('\nTenants with lease start date between 1st of June 1999 and 31st of August 2007: \n')
+        print(tabulate(dates_limited, headers=header))
 
-    # Requirement 3
-    tenant_mast_count = mast_count(tenant_list)
-    print('\nMast count per tenant: \n')
-    print(tabulate(tenant_mast_count.items(), headers=['Tenant Name', 'Mast Count']))
-
-    # Requirement 4
-    dates_limited = date_range(tenant_list, START_DATE, END_DATE)
-    print('\nTenants with lease start date between 1st of June 1999 and 31st of August 2007: \n')
-    print(tabulate(dates_limited, headers=header))
 
 if __name__ == '__main__':
     main()

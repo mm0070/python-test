@@ -49,7 +49,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_main.TestProcessCsv.test_dates">
+  <component name="RunManager" selected="Python.process_csv">
     <configuration name="process_csv" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="test-python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -129,10 +129,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for test_main.TestProcessCsv.test_dates" />
-        <item itemvalue="Python tests.Unittests for test_main.TestProcessCsv.test_prepare_data" />
         <item itemvalue="Python.process_csv" />
+        <item itemvalue="Python tests.Unittests for test_main.TestProcessCsv.test_dates" />
         <item itemvalue="Python tests.Unittests for test_main.TestProcessCsv.test_mast_count" />
+        <item itemvalue="Python tests.Unittests for test_main.TestProcessCsv.test_prepare_data" />
         <item itemvalue="Python tests.Unittests for test_main.TestProcessCsv.test_lease_25y" />
       </list>
     </recent_temporary>
@@ -166,18 +166,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_main.py</url>
-          <line>60</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests/test_main.py</url>
           <line>37</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_main.py</url>
-          <line>59</line>
-          <option name="timeStamp" value="27" />
+          <line>61</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

@@ -59,7 +59,7 @@ class TestProcessCsv(unittest.TestCase):
     def test_dates(self):
         dates = date_range(test_data, start_date, end_date)
         self.assertEqual(len(dates), 4)
+        self.assertEqual(dates[0][7], '24/06/1999')
 
-                         )
 if __name__ == '__main__':
     unittest.main()
