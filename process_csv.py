@@ -78,38 +78,23 @@ def main():
                     4 - Run task 4 only\n\
                     Input: ')
 
-    if choice == '0':
-        least_five = least_five_rent(tenant_list, header)
-        lease_25y, total_25y = lease_25_years(tenant_list, header)
-        tenant_mast_count = mast_count(tenant_list)
-        dates_limited = date_range(tenant_list, START_DATE, END_DATE)
-        print('Five tenants that pay the lowest rent:\n')
-        print(tabulate(least_five, headers=header))
-        print('\nTenants that have 25 year lease:\n')
-        print(tabulate(lease_25y, headers=header))
-        print('Total rent the above tenants pay: £{0:.2f}'.format(total_25y))
-        print('\nMast count per tenant: \n')
-        print(tabulate(tenant_mast_count.items(), headers=['Tenant Name', 'Mast Count']))
-        print('\nTenants with lease start date between 1st of June 1999 and \
-               31st of August 2007: \n')
-        print(tabulate(dates_limited, headers=header))
-    elif choice == '1':
+    if choice in {'0', '1'}:
         # Requirement 1
         least_five = least_five_rent(tenant_list, header)
         print('Five tenants that pay the lowest rent:\n')
         print(tabulate(least_five, headers=header))
-    elif choice == '2':
+    if choice in {'0', '2'}:
         # Requirement 2
         lease_25y, total_25y = lease_25_years(tenant_list, header)
         print('\nTenants that have 25 year lease:\n')
         print(tabulate(lease_25y, headers=header))
         print('Total rent the above tenants pay: £{0:.2f}'.format(total_25y))
-    elif choice == '3':
+    if choice in {'0', '3'}:
         # Requirement 3
         tenant_mast_count = mast_count(tenant_list)
         print('\nMast count per tenant: \n')
         print(tabulate(tenant_mast_count.items(), headers=['Tenant Name', 'Mast Count']))
-    elif choice == '4':
+    if choice in {'0', '4'}:
         # Requirement 4
         dates_limited = date_range(tenant_list, START_DATE, END_DATE)
         print('\nTenants with lease start date between 1st of June 1999 and \
